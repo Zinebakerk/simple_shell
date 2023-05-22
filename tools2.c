@@ -50,3 +50,27 @@ char *handle_path(char *cmd)
 	}
 	return (cmd);
 }
+/*
+char* strtok_custom(char* str, const char* delimiter) {
+        char* current_token = NULL;
+	char* token;
+	if (str != NULL)
+	{
+	token = str;
+	}
+	else 
+	{
+	if (current_token == NULL)
+	{
+	return NULL;
+	}
+	}
+	while (*current_token && strchr(delimiter, current_token)
+	{
+	current_token++;
+	}
+	if (*current_token == '\0')
+	{
+	}
+	token = current_token;
+*/
