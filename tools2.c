@@ -3,7 +3,7 @@
 /*
  * get_env - function that avalaibility of the path
  * @env-var : wanted evironement variable
- * return : Success , if the variable was found , NULL if it wasn't 
+ * return : Success , if the variable was found , NULL if it wasn't
  */
 
 
@@ -11,10 +11,11 @@ char *get_env(const char *env_var)
 {
 	int i = 0;
 	char *key;
+	extern char **environ;
 
-	while (env[i])
+	while (environ[i])
 	{
-		key = strtok(env[i], "=");
+		key = strtok(environ[i], "=");
 		if (strcmp(env_var, key) == 0)
 			return (strtok(NULL, "\n"));
 		i++;
@@ -28,25 +29,24 @@ char *get_env(const char *env_var)
  * return : if success  , returns the output , NULL  if it wasn't
  */
 
-char *get_env_cmd(char *cmd)
+char *handle_path(char *cmd)
 {
 	char *path = get_env("PATH");
-	char *token ;
+	char *token;
 	char *cmd_full;
-	struct stat check;
+	struct stat st;
 
 	token = strtok(path, ":");
 	while (token)
 	{
-	cmd_full = malloc(strlen(token) + strlen (command) + 2);
+	cmd_full = malloc(strlen(token) + strlen (cmd) + 2);
 	strcpy(cmd_full, token);
 	strcat(cmd_full, "/");
-	strcat(cmd_full, command);
-	if (str(cmd_full, &check) == 0)
+	strcat(cmd_full, cmd);
+	if (stat(cmd_full, &st) == 0)
 		return (cmd_full);
 	free (cmd_full);
 	token = strtok(NULL, ":");
 	}
-	return (NULL);
+	return (cmd);
 }
-

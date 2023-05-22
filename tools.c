@@ -83,9 +83,12 @@ char **read_split_cmd(void)
 *
 * Return: (void)
 */
-void execmd(char **cmd, char *shell_name)
+void execmd(char **cmd, char *shell_name, char **env)
 {
-	if (execve(cmd[0], cmd, NULL) == -1)
+	char *full_cmd;
+
+	full_cmd = handle_path(cmd[0]);
+	if (execve(full_cmd, cmd, env) == -1)
 	{
 	perror(shell_name);
 	exit(EXIT_FAILURE);

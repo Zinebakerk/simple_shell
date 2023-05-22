@@ -6,7 +6,7 @@
  *
  * Return: 0 Always (success)
  */
-int main(int ac, char **argv)
+int main(int ac, char **argv, char **env)
 {
 	char **cmd;
 	pid_t pid_child;
@@ -27,7 +27,7 @@ int main(int ac, char **argv)
 			}
 			if (pid_child == 0)
 			{
-				execmd(cmd, argv[0]);
+				execmd(cmd, argv[0], env);
 			}
 			else
 				wait(&status);
