@@ -16,7 +16,7 @@ int main(int ac, char **argv)
 	while (1)
 	{
 		prints(PROMPT);
-		cmd = read_cmd();
+		cmd = read_split_cmd();
 		if (cmd != NULL)
 		{
 			pid_child = fork();
