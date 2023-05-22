@@ -1,30 +1,37 @@
 #include "main.h"
 /**
- * main - Entry point
+ * main - main program for simple shell
+ * @ac: number of arguments
+ * @argv: argument
  *
  * Return: 0 Always (success)
  */
-int main(void)
+int main(int ac, char **argv)
 {
-	char *buffer = NULL;
-	size_t size_buff = 0;
-	ssize_t r_bytes;
+	char **cmd;
+	pid_t pid_child;
+	int status;
+	(void)ac;
 
-	while(true)
+	while (1)
 	{
-		printf("%s", PROMPT);
-		r_bytes = getline(&buffer, &size_buff, stdin);
-		if(r_bytes != -1)
+		prints(PROMPT);
+		cmd = read_cmd();
+		if (cmd != NULL)
 		{
-			perror("EROOR GETLINE");
-			exit(EXIT_FAILURE);
+			pid_child = fork();
+			if (pid_child == -1)
+			{
+				perror("ERROR FORK");
+				exit(EXIT_FAILURE);
+			}
+			if (pid_child == 0)
+			{
+				execmd(cmd, argv[0]);
+			}
+			else
+				wait(&status);
 		}
-		buffer[r_bytes - 1] = '\0';
-
-
-
 	}
-
-
-
+	return (0);
 }
