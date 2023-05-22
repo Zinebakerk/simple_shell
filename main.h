@@ -9,7 +9,6 @@
 #include <sys/types.h>
 
 void prints(char *str);
-char **read_cmd(void);
 void execmd(char **cmd, char *shell_name);
 char *read_cmd(void);
 char **split(char *buffer);
