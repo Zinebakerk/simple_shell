@@ -23,12 +23,11 @@ void prints(char *str)
  *
  * Return: (void)
  */
-char **read_cmd(void)
+char *read_cmd(void)
 {
 	size_t size = 0;
 	ssize_t r_bytes;
-	int wc = 0;
-	char *dup, *token, **arr = NULL, *buffer = NULL;
+	char *buffer = NULL;
 
 	r_bytes = getline(&buffer, &size, stdin);
 	if (r_bytes == -1)
@@ -36,9 +35,14 @@ char **read_cmd(void)
 		exit(EXIT_FAILURE);
 	}
 	buffer[r_bytes - 1] = '\0';
+	return (buffer);
+}
+char **split(char *buffer)
+{
+char *dup, *token, **arr = NULL;
 
 	dup = strdup(buffer);
-
+        int wc = 0;
 	token = strtok(dup, " \t\n");
 	/* if there is no command */
 	if (token == NULL)
