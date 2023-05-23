@@ -1,5 +1,4 @@
 #include "main.h"
-
 /*
  *
  *
@@ -76,4 +75,20 @@ void env_builtin(char **cmd, char *shell_name)
 		i++;
 	}
 }
+/**
+ *
+ *
+ *
+ *
+ */
+void free_2Darray(char **arr)
+{
+	int i = 0;
 
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
