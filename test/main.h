@@ -40,7 +40,7 @@ char *str_cat(char *dest, const char *src);
 int str_cmp(const char *s1, const char *s2);
 char *str_dup(const char *str);
 char *str_tok(char *str, const char *delimiter);
-char* str_chr(const char* str, int c);
+char *str_chr(const char* str, int c);
 
 #define PROMPT "#cisfun$ "
 #endif

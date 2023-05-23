@@ -81,22 +81,19 @@ char **read_split_cmd(void)
 }
 
 /**
-* execmd - a function that execute a command
-* @cmd: the command splitted
-* @shell_name: the shell name
-*
-* Return: (void)
-*/
-void execmd(char **cmd, char *shell_name, char **environ)
+ *  *
+ *   *
+ *    *
+ *     *
+ *      */
+void free_2Darray(char **arr)
 {
-	char *full_cmd;
+	int i = 0;
 
-	/* try handle path */
-	full_cmd = handle_path(cmd[0]);
-	if (execve(full_cmd, cmd, environ) == -1)
+	while (arr[i])
 	{
-		perror(shell_name);
-		free_2Darray(cmd);
-		exit(EXIT_FAILURE);
+		free(arr[i]);
+		i++;
 	}
+	free(arr);
 }

@@ -1,4 +1,26 @@
- #include "main.h"
+#include "main.h"
+
+int handle_builtin(char **cmd, char *shell_name)
+{
+	int i;
+	struct builtin builtins[] =
+       	{
+		{"env", env_builtin},
+		{"exit", exit_builtin},
+       		{NULL, NULL},
+	};
+
+	for (i = 0; builtins[i].cmd != NULL; i++)
+	{
+		if (strcmp(cmd[0], builtins[i].cmd) == 0)
+		{
+			builtins[i].f(cmd, shell_name);
+			return (1);
+		}
+	}
+	 return (-1);
+}
+
 /**
  * get_env - function that get the value of the environement variable
  * @env-var: wanted environment variable
@@ -19,9 +41,11 @@ char *get_env(const char *env_var)
 			return (strtok(NULL, "\n"));
 		i++;
 	}
+
 	free(key);
 	return (NULL);
 }
+
 /**
  * handle_path - function that handle the path of the command
  * @cmd: command to be handled
@@ -33,47 +57,24 @@ char *handle_path(char *cmd)
 {
 	char *token, *path, *cmd_full;
 	struct stat st;
-	/* if the command is a valable path don't handle it */
+ /* if the command is a valable path don't handle it */
 	if (stat(cmd, &st) == 0)
-		return (cmd);
+	return (cmd);
 
 	path = get_env("PATH");
 	token = strtok(path, ":");
 	while (token)
 	{
-		cmd_full = malloc(strlen(cmd) + strlen(token) + 2);
-		strcpy(cmd_full, token);
-		strcat(cmd_full, "/");
-		strcat(cmd_full, cmd);
-		if (stat(cmd_full, &st) == 0)
-			return (cmd_full);
-		free (cmd_full);
-		token = strtok(NULL, ":");
+			cmd_full = malloc(strlen(cmd) + strlen(token) + 2);
+			strcpy(cmd_full, token);
+			strcat(cmd_full, "/");
+			strcat(cmd_full, cmd);
+			if (stat(cmd_full, &st) == 0)
+					return (cmd_full);
+			free (cmd_full);
+			token = strtok(NULL, ":");
 	}
 	free(token);
 	return (cmd);
 }
-/*
-char* strtok_custom(char* str, const char* delimiter) {
-        char* current_token = NULL;
-	char* token;
-	if (str != NULL)
-	{
-	token = str;
-	}
-	else
-	{
-	if (current_token == NULL)
-	{
-	return NULL;
-	}
-	}
-	while (*current_token && strchr(delimiter, current_token)
-	{
-	current_token++;
-	}
-	if (*current_token == '\0')
-	{
-	}
-	token = current_token;
-*/
+
