@@ -16,7 +16,7 @@ char *get_env(const char *env_var)
 	while (environ[i])
 	{
 		key = strtok(environ[i], "=");
-		if (strcmp(env_var, key) == 0)
+		if (str_cmp(env_var, key) == 0)
 			return (strtok(NULL, "\n"));
 		i++;
 	}
@@ -39,10 +39,10 @@ char *handle_path(char *cmd)
 	token = strtok(path, ":");
 	while (token)
 	{
-	cmd_full = malloc(strlen(token) + strlen (cmd) + 2);
-	strcpy(cmd_full, token);
-	strcat(cmd_full, "/");
-	strcat(cmd_full, cmd);
+	cmd_full = malloc(str_len(token) + str_len (cmd) + 2);
+	str_cpy(cmd_full, token);
+	str_cat(cmd_full, "/");
+	str_cat(cmd_full, cmd);
 	if (stat(cmd_full, &st) == 0)
 		return (cmd_full);
 	free (cmd_full);
@@ -50,27 +50,3 @@ char *handle_path(char *cmd)
 	}
 	return (cmd);
 }
-/*
-char* strtok_custom(char* str, const char* delimiter) {
-        char* current_token = NULL;
-	char* token;
-	if (str != NULL)
-	{
-	token = str;
-	}
-	else 
-	{
-	if (current_token == NULL)
-	{
-	return NULL;
-	}
-	}
-	while (*current_token && strchr(delimiter, current_token)
-	{
-	current_token++;
-	}
-	if (*current_token == '\0')
-	{
-	}
-	token = current_token;
-*/
