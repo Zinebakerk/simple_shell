@@ -18,8 +18,8 @@ unsigned int str_len(char *str)
 /**
  * str_cpy - function that copies src to dest
  * @dest: input char
- * @src: the copied char 
- * Return: the copied char 
+ * @src: the copied char
+ * Return: the copied char
  */
 
 char *str_cpy(char *dest, const char *src)
@@ -63,7 +63,9 @@ char *str_cat(char *dest, const char *src)
  * str_cmp - function that compares two strings
  * @s1: input string
  * @s2: input string
- * Return : return an integer showing the result of the comp , 0 if s1 and s2 were equal
+ *
+ * Return: return an integer showing the result of the comp
+ * 0 if s1 and s2 were equal
  * negative value if s1 is less than s2
  * positive if s1 is greater than s2
  */

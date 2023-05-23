@@ -3,7 +3,7 @@
  * main - main program for simple shell
  * @ac: number of arguments
  * @argv: argument
- *
+ * #env: external environment variable
  * Return: 0 Always (success)
  */
 int main(int ac, char **argv, char **env)

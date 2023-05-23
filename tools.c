@@ -2,7 +2,7 @@
 
 /**
  * prints - a function that print a string to stdout
- * str: the string to print
+ * @str: the string to print
  *
  * Return: (void)
  */
@@ -40,7 +40,12 @@ char *read_cmd(void)
 	buffer[r_bytes - 1] = '\0';
 	return (buffer);
 }
-
+/**
+ * split - test
+ * @buffer: test
+ *
+ * Return: test
+ */
 
 char **split(char *buffer)
 {
@@ -71,7 +76,11 @@ char **split(char *buffer)
 	return (arr);
 }
 
-
+/**
+ * read_split_cmd - test
+ *
+ * Return: test
+ */
 char **read_split_cmd(void)
 {
 	char *buffer = NULL;
@@ -84,6 +93,7 @@ char **read_split_cmd(void)
 * execmd - a function that execute a command
 * @cmd: the command splitted
 * @shell_name: the shell name
+* @environ: environment variable
 *
 * Return: (void)
 */

@@ -1,7 +1,10 @@
 #include "main.h"
-/*
+/**
+ * exit_builtin - test
+ * @cmd: test
+ * @shell_name: test
  *
- *
+ * Return: test
  */
 void exit_builtin(char **cmd, char *shell_name)
 {
@@ -34,15 +37,16 @@ void exit_builtin(char **cmd, char *shell_name)
 	exit(status);
 }
 /**
- * handle_builtin -
- * @cmd:
+ * handle_builtin - test
+ * @cmd: test
+ * @shell_name: test
  *
  * Return: 1 if success or -1 if fails
  */
 int handle_builtin(char **cmd, char *shell_name)
 {
 	int i;
-	struct builtin builtins[] = {
+	builtin builtins[] = {
 		{"env", env_builtin},
 		{"exit", exit_builtin},
 		{NULL, NULL},
@@ -59,12 +63,15 @@ int handle_builtin(char **cmd, char *shell_name)
 	return (-1);
 }
 /**
+ * env_builtin - test
+ * @cmd: test
+ * @shell_name: test
  *
+ * Return: test
  */
 void env_builtin(char **cmd, char *shell_name)
 {
 	int i = 0;
-	extern char **environ;
 
 	(void)cmd;
 	(void)shell_name;
@@ -76,10 +83,10 @@ void env_builtin(char **cmd, char *shell_name)
 	}
 }
 /**
+ * free_2Darray - test
+ * @arr: test
  *
- *
- *
- *
+ * Return: void
  */
 void free_2Darray(char **arr)
 {
