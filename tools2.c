@@ -15,9 +15,9 @@ char *get_env(const char *env_var)
 
 	while (environ[i])
 	{
-		key = strtok(environ[i], "=");
+		key = str_tok(environ[i], "=");
 		if (str_cmp(env_var, key) == 0)
-			return (strtok(NULL, "\n"));
+			return (str_tok(NULL, "\n"));
 		i++;
 	}
 	return (NULL);
@@ -36,7 +36,7 @@ char *handle_path(char *cmd)
 	char *cmd_full;
 	struct stat st;
 
-	token = strtok(path, ":");
+	token = str_tok(path, ":");
 	while (token)
 	{
 	cmd_full = malloc(str_len(token) + str_len (cmd) + 2);
@@ -46,7 +46,7 @@ char *handle_path(char *cmd)
 	if (stat(cmd_full, &st) == 0)
 		return (cmd_full);
 	free (cmd_full);
-	token = strtok(NULL, ":");
+	token = str_tok(NULL, ":");
 	}
 	return (cmd);
 }

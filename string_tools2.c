@@ -1,30 +1,22 @@
 #include "main.h"
 
 /**
- * str_spn - function that searches a string for a set of bytes
+ * str_chr - function that searches a string for a set of bytes
  * @str: char string array
- * @delimiters: char array to check bytes with
+ * @c: char array to check bytes with
  * Return: Number of butes in the initial segment of "s"
  */
-unsigned int strc_spn(char *str, const char *delimiters)
-{
-	size_t length = 0;
 
-     	while (*str != '\0')
-       	{
-		 const char *delimiter = delimiters;
-	 	while (*delimiter != '\0')
-	 	{
-			if (*str == *delimiter)
-			{	
-	       			return length;
-			}
-			delimiter++;
-	 	}
+char* str_chr(const char* str, int c) {
+	while (*str) 
+	{
+		 if (*str == (char)c)
+		{
+			 return (char*)str;
+		}
 		str++;
-       		length++;
-	}
-	return length;
+	 }
+	        return NULL;
 }
 
 /**
@@ -38,30 +30,40 @@ char *str_tok(char *str, const char *delimiter)
 {	
 	static char *token = NULL;
 	char *token_end = NULL;
-	if (str == NULL)
-	{
-		str = token;
-	}
-	/* skip other delimeters */
-	str += strc_spn(str, delimiter);
 
-	if (*str == '\0')
+	if (str != NULL)
 	{
-		token = NULL;
+		 token = str;
+	}
+	else 
+	{
+		if (token == NULL)
+			{
+			return (NULL);
+			}
+	}
+	while (*token && str_chr(delimiter, *token) != NULL )
+	{
+		token++;
+	}
+
+	if (*token == '\0')
+	{
 		return (NULL);
 	}
+	
+	token_end = token;
 
-	token_end = str + strc_spn(str, delimiter);
-
-	if (*token_end != '\0')
+	while (*token && str_chr(delimiter, *token) == NULL )
 	{
-		*token_end = '\0';
-		token = token_end + 1;
+		token++;
 	}
-	else
+	
+	if (*token != '\0')
 	{
-		token = NULL;
+		*token = '\0';
+		token++;
+	
 	}
-	return (str);
-	}
-
+	return token_end;
+}

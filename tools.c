@@ -48,7 +48,7 @@ char **split(char *buffer)
 	int wc = 0;
 
 	dup = str_dup(buffer);
-	token = strtok(dup, " \t\n");
+	token = str_tok(dup, " \t\n");
 	/* if there is no command */
 	if (token == NULL)
 		return (NULL);
@@ -64,7 +64,7 @@ char **split(char *buffer)
 			exit(EXIT_FAILURE);
 		}
 		arr[wc - 1] = str_dup(token);
-		token = strtok(NULL, " \t\n");
+		token = str_tok(NULL, " \t\n");
 	}
 	arr[wc] = NULL;
 	free(dup);
