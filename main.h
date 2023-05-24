@@ -8,6 +8,8 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <signal.h>
+#include <fcntl.h>
 
 extern char **environ;
 
@@ -18,6 +20,8 @@ char **split(char *buffer);
 char **read_split_cmd(void);
 void free_2Darray(char **arr);
 
+/* more_tools */
+void signal_handler(int signa);
 /* execute.c */
 void execmd(char **cmd, char *shell_name, char **env);
 

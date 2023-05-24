@@ -12,10 +12,9 @@ int main(int ac, char **argv, char **env)
 	pid_t pid_child;
 	int status;
 	(void)ac;
-
+	signal(SIGINT, signal_handler);
 	while (1)
 	{
-		prints(PROMPT);
 		cmd = read_split_cmd();
 
 		if (cmd != NULL)
@@ -34,12 +33,7 @@ int main(int ac, char **argv, char **env)
 			}
 			else
 			{
-				if (wait(&status) == -1)
-				{
-					free_2Darray(cmd);
-					perror("ERROR WAIT");
-					exit(EXIT_FAILURE);
-				}
+				wait(&status);
 			}
 		}
 	}
