@@ -13,37 +13,30 @@ int main(int ac, char **argv, char **env)
 	int status;
 	(void)ac;
 
+	signal(SIGINT, signal_handler);
 	while (1)
 	{
-		prints(PROMPT);
+		if (isatty(STDIN_FILENO))
+			prints(PROMPT);
 		cmd = read_split_cmd();
 
 		if (cmd != NULL)
 		{
-			if (handle_builtin(cmd, argv[0]) == -1)
+			pid_child = fork();
+			if (pid_child == -1)
 			{
-				pid_child = fork();
-				if (pid_child == -1)
-				{
-					perror("ERROR FORK");
-					free_2Darray(cmd);
-					exit(EXIT_FAILURE);
-				}
-				if (pid_child == 0)
-				{
-					execmd(cmd, argv[0], env);
-					free_2Darray(cmd);
-				}
-				else
-				{
-					if (wait(&status) == -1)
-					{
-						free_2Darray(cmd);
-						perror("ERROR WAIT");
-						exit(EXIT_FAILURE);
-					}
-				}
+				perror("ERROR FORK");
+				free_2Darray(cmd);
+				exit(EXIT_FAILURE);
 			}
+			if (pid_child == 0)
+			{
+				signal(SIGINT, SIG_DFL);
+				execmd(cmd, argv[0], env);
+				free_2Darray(cmd);
+			}
+			else
+				wait(&status);
 		}
 	}
 	exit(EXIT_SUCCESS);
