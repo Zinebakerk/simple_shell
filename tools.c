@@ -1,4 +1,24 @@
 #include "main.h"
+
+/**
+ * prints - a function that print a string to stdout
+ * @str: the string to print
+ *
+ * Return: (void)
+ */
+void prints(char *str)
+{
+	int i = 0;
+
+	if (!str)
+		return;
+	while (str[i] != '\0')
+	{
+		write(STDOUT_FILENO, &str[i], 1);
+		i++;
+	}
+}
+
 /**
 * read_cmd - a function that reads command from the stdin and
 * split it to an array of each word of the string
@@ -74,36 +94,25 @@ char **read_split_cmd(void)
 	buffer = read_cmd();
 	return (split(buffer));
 }
+
 /**
- * prints - a function that print a string to stdout
- * @str: the string to print
- *
- * Return: (void)
- */
-void prints(char *str)
+* execmd - a function that execute a command
+* @cmd: the command splitted
+* @shell_name: the shell name
+* @environ: environment variable
+*
+* Return: (void)
+*/
+void execmd(char **cmd, char *shell_name, char **environ)
 {
-	int len;
+	char *full_cmd;
 
-	if (!str)
-		return;
-	len = str_len(str);
-
-	write(STDOUT_FILENO, str, len);
-}
-/**
- * free_2Darray - test
- * @arr: test
- *
- * Return: void
- */
-void free_2Darray(char **arr)
-{
-	int i = 0;
-
-	while (arr[i])
+	/* try handle path */
+	full_cmd = handle_path(cmd[0]);
+	if (execve(full_cmd, cmd, environ) == -1)
 	{
-		free(arr[i]);
-		i++;
+		perror(shell_name);
+		free_2Darray(cmd);
+		exit(EXIT_FAILURE);
 	}
-	free(arr);
 }

@@ -20,21 +20,29 @@ int main(int ac, char **argv, char **env)
 
 		if (cmd != NULL)
 		{
-			pid_child = fork();
-			if (pid_child == -1)
+			if (handle_builtin(cmd, argv[0]) == -1)
 			{
-				perror("ERROR FORK");
-				free_2Darray(cmd);
-				exit(EXIT_FAILURE);
-			}
-			if (pid_child == 0)
-			{
-				execmd(cmd, argv[0], env);
-				free_2Darray(cmd);
-			}
-			else
-			{
-				wait(&status);
+				pid_child = fork();
+				if (pid_child == -1)
+				{
+					perror("ERROR FORK");
+					free_2Darray(cmd);
+					exit(EXIT_FAILURE);
+				}
+				if (pid_child == 0)
+				{
+					execmd(cmd, argv[0], env);
+					free_2Darray(cmd);
+				}
+				else
+				{
+					if (wait(&status) == -1)
+					{
+						free_2Darray(cmd);
+						perror("ERROR WAIT");
+						exit(EXIT_FAILURE);
+					}
+				}
 			}
 		}
 	}
