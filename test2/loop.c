@@ -5,7 +5,7 @@
  * @env: double pointer
  * Return: void
  */
-void loop(char **env)
+void loop(char **env, char *shell_name)
 {
 	char *line;
 	char **dir, **command;
@@ -28,7 +28,7 @@ void loop(char **env)
 		command = split_line(line);
 		dir = dirTok(env);
 		combine = checkPath(dir, command[0]);
-		checkBuiltins(combine, command);
+		checkBuiltins(combine, command, shell_name);
 		if (!combine)
 			perror(combine);
 	}

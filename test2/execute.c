@@ -6,7 +6,7 @@
  * @command: user input
  * Return: status
  */
-int execute(char *fullPath, char **command)
+int execute(char *fullPath, char **command, char *shell_name)
 {
 	pid_t child;
 	int status = 0;
@@ -18,7 +18,11 @@ int execute(char *fullPath, char **command)
 		if (stat(fullPath, &st) == 0)
 		{
 			status = execve(fullPath, command, environ);
-			exit(status);
+			if (status < 0)
+			{
+				perror(shell_name);
+				exit(EXIT_FAILURE);
+			}
 		}
 	}
 	else

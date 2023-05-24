@@ -58,7 +58,7 @@ int printenv(char **command)
  * @command: command line input
  * Return: path to builtin or process from directory
  */
-int checkBuiltins(char *combine, char **command)
+int checkBuiltins(char *combine, char **command, char *shell_name)
 {
 	int i;
 	char *array[] = {"exit", "cd", "env", NULL};
@@ -73,5 +73,5 @@ int checkBuiltins(char *combine, char **command)
 			return (functions[i](command));
 		i++;
 	}
-	return (execute(combine, command));
+	return (execute(combine, command, shell_name));
 }
