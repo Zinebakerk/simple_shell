@@ -54,7 +54,7 @@ int handle_builtin(char **cmd, char *shell_name)
 
 	for (i = 0; builtins[i].cmd != NULL; i++)
 	{
-		if (strcmp(cmd[0], builtins[i].cmd) == 0)
+		if (str_cmp(cmd[0], builtins[i].cmd) == 0)
 		{
 			builtins[i].f(cmd, shell_name);
 			return (1);

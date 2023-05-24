@@ -52,8 +52,8 @@ char **split(char *buffer)
 	char *dup, *token, **arr = NULL;
 	int i, wc = 0;
 
-	dup = strdup(buffer);
-	token = strtok(dup, " \t\n");
+	dup = str_dup(buffer);
+	token = str_tok(dup, " \t\n");
 	/* if there is no command */
 	if (token == NULL)
 		return (NULL);
@@ -61,7 +61,7 @@ char **split(char *buffer)
 	while (token != NULL)
 	{
 		wc++;
-		token = strtok(NULL, " \t\n");
+		token = str_tok(NULL, " \t\n");
 	}
 	arr = malloc(sizeof(char *) * (wc + 1));
 	if (arr == NULL)
@@ -70,11 +70,11 @@ char **split(char *buffer)
 		perror("EROOR MALLOC");
 		exit(EXIT_FAILURE);
 	}
-	token = strtok(buffer, " \t\n");
+	token = str_tok(buffer, " \t\n");
 	for (i = 0; i < wc; i++)
 	{
 		arr[i] = token;
-		token = strtok(NULL, " \t\n");
+		token = str_tok(NULL, " \t\n");
 	}
 
 	arr[wc] = NULL;

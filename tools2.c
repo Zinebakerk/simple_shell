@@ -13,9 +13,9 @@ char *get_env(const char *env_var)
 
 	while (environ[i])
 	{
-		key = strtok(environ[i], "=");
-		if (strcmp(env_var, key) == 0)
-			return (strtok(NULL, "\n"));
+		key = str_tok(environ[i], "=");
+		if (str_cmp(env_var, key) == 0)
+			return (str_tok(NULL, "\n"));
 		i++;
 	}
 	free(key);
@@ -37,17 +37,17 @@ char *handle_path(char *cmd)
 		return (cmd);
 
 	path = get_env("PATH");
-	token = strtok(path, ":");
+	token = str_tok(path, ":");
 	while (token)
 	{
-		cmd_full = malloc(strlen(cmd) + strlen(token) + 2);
-		strcpy(cmd_full, token);
-		strcat(cmd_full, "/");
-		strcat(cmd_full, cmd);
+		cmd_full = malloc(str_len(cmd) + str_len(token) + 2);
+		str_cpy(cmd_full, token);
+		str_cat(cmd_full, "/");
+		str_cat(cmd_full, cmd);
 		if (stat(cmd_full, &st) == 0)
 			return (cmd_full);
 		free(cmd_full);
-		token = strtok(NULL, ":");
+		token = str_tok(NULL, ":");
 	}
 	free(token);
 	return (cmd);
