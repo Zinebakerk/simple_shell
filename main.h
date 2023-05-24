@@ -1,57 +1,41 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-/* header files */
-#include <stdio.h>
-#include <stdlib.h>
+
 #include <string.h>
+#include <stdio.h>
 #include <unistd.h>
-#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
+#include <stdlib.h>
 #include <signal.h>
-#include <fcntl.h>
-#include <errno.h>
-
-/* Global variable */
 extern char **environ;
+extern int dircount;
 
-/**
- * struct builtin - Typedef struct
- * @cmd: command
- * @f: The function associated
- **/
-typedef struct builtin
-{
-	char *cmd;
-	void (*f)(char **cmd, char *shell_name);
-} builtin;
+#define DELIM " \n\t"
 
-/* tools.c */
-void prints(char *str);
-char *read_cmd(void);
-char **split(char *buffer);
-char **read_split_cmd(void);
-void free_2Darray(char **arr);
-/* more_tools.c */
-char *get_env(const char *env_var);
-/* execute.c */
-void execmd(char **cmd, char *shell_name, char **env);
-/** handlers.c */
-char *handle_path(char *cmd);
-int handle_builtin(char **cmd, char *shell_name);
-void signal_handler(int sign);
-/* bultins.c */
-void exit_builtin(char **cmd, char *shell_name);
-void env_builtin(char **cmd, char *shell_name);
-
-unsigned int str_len(char *str);
-char *str_cpy(char *dest, const char *src);
-char *str_cat(char *dest, const char *src);
-int str_cmp(const char *s1, const char *s2);
-char *str_dup(const char *str);
-char *str_tok(char *str, const char *delimiter);
-char *str_chr(const char *str, int c);
-
-#define PROMPT "#cisfun$ "
+void env(char **env);
+int _strlen(char *s);
+int _strcmp(char *s1, char *s2);
+char *_strdup(char *str);
+void prompt(void);
+char *get_line(void);
+char **split_line(char *line);
+char *get_env(char **env);
+char *pathCat(char *dir, char *av);
+char **dirTok(char **env);
+void loop(char **env);
+char *checkPath(char **dir, char *command);
+int execute(char *fullPath, char **command);
+int exit_sh(char **command);
+int cd(char **command);
+int printenv(char **command);
+int checkBuiltins(char *combine, char **command);
+void handler(int sig);
+void buffers1(char *line, char **command);
+void buffers2(char **dir, char *combine);
+void buffers3(char **tokens, char *buf);
+void buffers4(char **tok, char *buf2);
+void buffers5(char *dup);
 #endif

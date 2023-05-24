@@ -1,18 +1,27 @@
 #include "main.h"
+
 /**
-* execmd - a function that execute a command
-* @cmd: the command splitted
-* @shell_name: the shell name
-* @environ: environment variable
-*
-* Return: (void)
-*/
-void execmd(char **cmd, char *shell_name, char **env)
+ * execute - forks to child process to execute command
+ * @fullPath: full directory with command
+ * @command: user input
+ * Return: status
+ */
+int execute(char *fullPath, char **command)
 {
-	if (execve(cmd[0], cmd, env) == -1)
+	pid_t child;
+	int status = 0;
+	struct stat st;
+
+	child = fork();
+	if (child == 0)
 	{
-		perror(shell_name);
-		free_2Darray(cmd);
-		exit(EXIT_FAILURE);
+		if (stat(fullPath, &st) == 0)
+		{
+			status = execve(fullPath, command, environ);
+			exit(status);
+		}
 	}
+	else
+		wait(NULL);
+	return (status);
 }
