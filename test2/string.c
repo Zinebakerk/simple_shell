@@ -27,7 +27,7 @@ int _strcmp(char *s1, char *s2)
  * @str: string input
  * Return: buffer to dup string
  */
-char *_strdup(char *str)
+char *str_dup(char *str)
 {
 	char *dup = NULL;
 	int i;

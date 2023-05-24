@@ -12,8 +12,8 @@ char *_getline(void)
 
 	/* user input*/
 
-	test = getline(&buf, &bufsize, stdin);
-	buffers3(NULL, buf);
+	exam = getline(&buffer, &bufsize, stdin);
+	buffers3(NULL, buffer);
 
 	if (exam == EOF)
 	{
@@ -48,7 +48,10 @@ void _prompt(void)
 char **split_line(char *input)
 {
 	int i = 1;
-	char *d_buffer, char *kento, char *s_tok, char **token_arr;
+	char *d_buffer;
+       	char *kento;
+       	char *s_tok;
+       	char **token_arr;
 
 
 	d_buffer = str_dup(input);

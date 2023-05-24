@@ -6,10 +6,10 @@
  * Return: void
  */
 
-void  handle_f(int signal)
+void  handler(int sig)
 {
 	signal(sig, SIG_IGN);
 	write(STDERR_FILENO, "\n", 1);
-	prompt();
-	signal(SIGINT, handle_f);
+	_prompt();
+	signal(SIGINT, handler);
 }

@@ -9,7 +9,10 @@
 
 void check(char *env[], char *name)
 {
-	char *_line, char *factor, **cmd, char **di_r;
+	char *_line;
+       	char *factor;
+       	char **cmd;
+       	char **di_r;
 
 	while (1)
 	{
@@ -17,11 +20,12 @@ void check(char *env[], char *name)
 		_prompt();
 
 		/* Ctrl + c handling */
-		signal(SIGINT, handle_f);
+		signal(SIGINT, handler);
 		_line = _getline();
 		cmd = split_line(_line);
-		d_ir = dirTok(env);
-		factor = checkPath(d_ir, cmd[0]);
+
+		di_r = dirTok(env);
+		factor = checkPath(di_r, cmd[0]);
 		checkBuiltins(factor, cmd, name);
 
 		/* perror flagged if not factor was found*/
