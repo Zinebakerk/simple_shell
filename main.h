@@ -2,28 +2,54 @@
 #define MAIN_H
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <string.h>
-#include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+#include <sys/types.h>
+#include <signal.h>
 
 extern char **environ;
+/**
+ * struct builtin - Typedef struct
+ * @cmd: command
+ * @f: The function associated
+ **/
+typedef struct builtin
+{
+	char *cmd;
+	void (*f)(char **cmd, char *shell_name);
+} builtin;
 
-void _env(void);
-void _bye(char *buff, int exit_status);
-int _strcmp(char *s1, char *s2);
-char *_strdup(char *str);
-int tokcount(char *s, const char *delim);
-int _strlen(char *s);
-int _strncmp(char *s1, char *s2, int n);
-char *_strcpy(char *dest, char *src);
-char *_strcat(char *dest, char *src);
-int _putchar(char c);
-char **strtokenizer(char *s, const char *delim);
-int _putchar(char c);
-char *_pathoma(char *buff);
-int _fork(char *path, char **args);
+/* tools.c */
+void prints(char *str);
+char *read_cmd(void);
+char **split(char *buffer);
+char **read_split_cmd(void);
+void free_2Darray(char **arr);
+void *_realloc(void *ptr, unsigned int new_size);
+/* execute.c */
+void execmd(char **cmd, char *shell_name, char **env);
+/** handlers.c */
+char *handle_path(char *cmd);
+int handle_builtin(char **cmd, char *shell_name);
+char *get_env(const char *env_var);
+/* prompt */
+void prompt(void);
+/* bultins.c */
+void exit_builtin(char **cmd, char *shell_name);
+void env_builtin(char **cmd, char *shell_name);
+/* handler .c */
+void  handler(int sig);
 
+unsigned int str_len(char *str);
+char *str_cpy(char *dest, const char *src);
+char *str_cat(char *dest, const char *src);
+int str_cmp(const char *s1, const char *s2);
+char *str_dup(const char *str);
+char *str_tok(char *str, const char *delimiter);
+char *str_chr(const char *str, int c);
+
+#define PROMPT "#cisfun$ "
 #endif
