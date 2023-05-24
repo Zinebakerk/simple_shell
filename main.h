@@ -27,7 +27,7 @@ char *read_cmd(void);
 char **split(char *buffer);
 char **read_split_cmd(void);
 void free_2Darray(char **arr);
-
+void *_realloc(void *ptr, unsigned int new_size);
 /* execute.c */
 void execmd(char **cmd, char *shell_name, char **env);
 /** handlers.c */

@@ -50,10 +50,10 @@ char *read_cmd(void)
 char **split(char *buffer)
 {
 	char *dup, *token, **arr = NULL;
-	int wc = 0;
+	int i, wc = 0;
 
-	dup = str_dup(buffer);
-	token = str_tok(dup, " \t\n");
+	dup = strdup(buffer);
+	token = strtok(dup, " \t\n");
 	/* if there is no command */
 	if (token == NULL)
 		return (NULL);
@@ -61,16 +61,22 @@ char **split(char *buffer)
 	while (token != NULL)
 	{
 		wc++;
-		arr = realloc(arr, sizeof(char *) * (wc + 1));
-		if (arr == NULL)
-		{
-			free(dup);
-			perror("EROOR REALLOC");
-			exit(EXIT_FAILURE);
-		}
-		arr[wc - 1] = str_dup(token);
-		token = str_tok(NULL, " \t\n");
+		token = strtok(NULL, " \t\n");
 	}
+	arr = malloc(sizeof(char *) * (wc + 1));
+	if (arr == NULL)
+	{
+		free(buffer);
+		perror("EROOR MALLOC");
+		exit(EXIT_FAILURE);
+	}
+	token = strtok(buffer, " \t\n");
+	for (i = 0; i < wc; i++)
+	{
+		arr[i] = token;
+		token = strtok(NULL, " \t\n");
+	}
+
 	arr[wc] = NULL;
 	free(dup);
 	return (arr);
