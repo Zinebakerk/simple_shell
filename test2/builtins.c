@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * exit_sh - function to exit from shell
- * @command: input from command
- * Return: 0 for success
+ * exit_sh - function that quits from shell
+ * @command: command input
+ * Return: if success 0 , failed 1
  */
 int exit_sh(char **command)
 {
@@ -20,9 +20,9 @@ int exit_sh(char **command)
 }
 
 /**
- * cd - function to change directory
- * @command: input from command
- * Return: 0 for success
+ * cd - function that changes the directory 
+ * @command: command input
+ * Return: if success 0 , failed 1
  */
 int cd(char **command)
 {
@@ -31,7 +31,7 @@ int cd(char **command)
 }
 
 /**
- * printenv - function to print env
+ * printenv - function that  prints the environ
  * @command: pointer to command
  * Return: 0 for success
  */
@@ -53,10 +53,10 @@ int printenv(char **command)
 }
 
 /**
- * checkBuiltins - check for builtins and call function
- * @combine: full directory
- * @command: command line input
- * Return: path to builtin or process from directory
+ * checkBuiltins - function that check for builtins
+ * @combine:directory
+ * @command:input command line
+ * Return: process from directory
  */
 int checkBuiltins(char *combine, char **command, char *shell_name)
 {

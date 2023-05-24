@@ -6,6 +6,7 @@
  * @command: user input
  * Return: status
  */
+
 int execute(char *fullPath, char **command, char *shell_name)
 {
 	pid_t child;

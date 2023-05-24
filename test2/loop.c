@@ -1,36 +1,32 @@
 #include "main.h"
+
 /**
- * loop - function to get user input, tokonize directory and
- * check for builtins. Main loop to initiate shell
- * @env: double pointer
+ * check - function that takes the user input, then check for built-env
+ * @env: pointer to pointer - environement
+ * @name : shell_name
  * Return: void
  */
-void loop(char **env, char *shell_name)
+
+void check(char *env[], char *name)
 {
-	char *line;
-	char **dir, **command;
-	char *combine;
+	char *_line, char *factor, **cmd, char **di_r;
 
 	while (1)
 	{
-		/**
-		 *  Write prompt, then get user input
-		 */
-		prompt();
-		signal(SIGINT, handler);
-		line = get_line();
-		/**
-		 * Pass the command to be tokenized,
-		 * Split the directories into tokens,
-		 * Concat directory and input,
-		 *  Check builtins
-		 */
-		command = split_line(line);
-		dir = dirTok(env);
-		combine = checkPath(dir, command[0]);
-		checkBuiltins(combine, command, shell_name);
-		if (!combine)
-			perror(combine);
+		/* prompt message flagget out */
+		_prompt();
+
+		/* Ctrl + c handling */
+		signal(SIGINT, handle_f);
+		_line = _getline();
+		cmd = split_line(_line);
+		d_ir = dirTok(env);
+		factor = checkPath(d_ir, cmd[0]);
+		checkBuiltins(factor, cmd, name);
+
+		/* perror flagged if not factor was found*/
+		if (!factor)
+			perror(factor);
 	}
 	buffers1(NULL, NULL);
 	buffers2(NULL, NULL);

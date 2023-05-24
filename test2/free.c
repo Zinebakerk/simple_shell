@@ -1,10 +1,12 @@
 #include "main.h"
+
 /**
- *buffers1 - frees line and command
- *@line: pointer to line
- *@command: command
+ *buffers1 - function that frees the buffers1
+ *@line: pointer to liner
+ *@command: pointer to pointer 
  *Return: void
  */
+
 void buffers1(char *line, char **command)
 {
 	static char *l;
@@ -34,11 +36,12 @@ void buffers1(char *line, char **command)
 }
 
 /**
- *buffers2 - frees directory and combine
- *@dir: directory
- *@combine: combine
+ *buffers2 - frees directory 
+ *@dir:file  directory 
+ *@combine: effect combine
  *Return: void
  */
+
 void buffers2(char **dir, char *combine)
 {
 	static char **di;
@@ -65,9 +68,9 @@ void buffers2(char **dir, char *combine)
 	}
 }
 /**
- *buffers3 - frees token and buffer
- *@tokens: tokens
- *@buf: buffer
+ *buffers3 - function that frees token and buffer
+ *@tokens: tokenizers
+ *@buf: pointer to buffer
  *Return: void
  */
 void buffers3(char **tokens, char *buf)
@@ -96,9 +99,9 @@ void buffers3(char **tokens, char *buf)
 	}
 }
 /**
- *buffers4 - frees tok and buf2
- *@tok: token
- *@buf2: buffer
+ *buffers4 - fucntion that frees tokens 
+ *@tok: tokenizers
+ *@buf2: pointer to buffer
  *Return: void
  */
 void buffers4(char **tok, char *buf2)
@@ -128,8 +131,8 @@ void buffers4(char **tok, char *buf2)
 }
 
 /**
- *buffers5 - frees dup buffer
- *@dup: dup buffer found in strlen
+ *buffers5 - function that frees dup buffer
+ *@dup: dup found in strlen _ strlen
  *Return: void
  */
 void buffers5(char *dup)

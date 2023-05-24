@@ -4,16 +4,18 @@
  * get_line - get line from command
  * Return: buffer
  */
-char *get_line(void)
+char *_getline(void)
 {
-	char *buf = NULL;
+	int exam;
 	size_t bufsize = 0;
-	int test;
+	char *buffer = NULL;
+
+	/* user input*/
 
 	test = getline(&buf, &bufsize, stdin);
 	buffers3(NULL, buf);
 
-	if (test == EOF)
+	if (exam == EOF)
 	{
 		buffers1(NULL, NULL);
 		buffers2(NULL, NULL);
@@ -22,40 +24,53 @@ char *get_line(void)
 		buffers5(NULL);
 		_exit(0);
 	}
-	return (buf);
+	return (buffer);
 }
 
 /**
- * split_line - split line into tokens
- * @line: command line input
- * Return: tokens
+ * prompt - function to print prompt
+ * Return: void
  */
-char **split_line(char *line)
+
+void _prompt(void)
 {
-	char *dup_buf;
-	char *token;
-	char *toks;
-	char **tok;
+	if (isatty(STDIN_FILENO))
+	write(STDOUT_FILENO, "$ ", 2);
+}
+
+
+/**
+ * split_line - function that splits the line given by the user
+ * @line: the input command entered by the user
+ * Return: token_Arr output
+ */
+
+char **split_line(char *input)
+{
 	int i = 1;
+	char *d_buffer, char *kento, char *s_tok, char **token_arr;
 
-	dup_buf = _strdup(line);
-	token = strtok(line, DELIM);
-	while (token)
+
+	d_buffer = str_dup(input);
+	kento = strtok(input, DELIM);
+
+	while (kento)
 	{
-		token = strtok(NULL, DELIM);
+		kento = strtok(NULL, DELIM);
 		i++;
 	}
-	tok = malloc(4096);
-	buffers4(tok, NULL);
 
-	toks = strtok(dup_buf, DELIM);
+	token_arr = malloc(4096);
+	buffers4(token_arr, NULL);
+
+	s_tok = strtok(d_buffer, DELIM);
 	i = 0;
-	while (toks)
+	while (s_tok)
 	{
-		tok[i] = toks;
-		toks = strtok(NULL, DELIM);
+		token_arr[i] = s_tok;
+		s_tok = strtok(NULL, DELIM);
 		i++;
 	}
-	tok[i] = '\0';
-	return (tok);
+	token_arr[i] = '\0';
+	return (token_arr);
 }

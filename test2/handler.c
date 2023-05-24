@@ -1,13 +1,15 @@
 #include "main.h"
+
 /**
- * handler - determines how to behave when it is delivered a signal
- * @sig: signal
+ * handle_f - a function that handle the sign when it's delivered
+ * @signal: received signal
  * Return: void
  */
-void  handler(int sig)
+
+void  handle_f(int signal)
 {
 	signal(sig, SIG_IGN);
 	write(STDERR_FILENO, "\n", 1);
 	prompt();
-	signal(SIGINT, handler);
+	signal(SIGINT, handle_f);
 }
