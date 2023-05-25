@@ -21,7 +21,7 @@ int exit_builtin(char **args);
 int _fork(char **arg, char **av, char **env, char *lineptr, int np, int c);
 
 /* get_cmd.c */
-*get_cmd(void);
+char *get_cmd(void);
 
 /* get_env.c */
 void _getenv(char **env);

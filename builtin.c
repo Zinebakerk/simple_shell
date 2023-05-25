@@ -6,7 +6,8 @@ int ctrld_biltin(char **args);
 
 char *builtin_str[] = {"cd", "help", "exit", "^D"};
 
-int (*builtin_func[]) (char **) = {&lsh_cd, &lsh_help, &lsh_exit, &lsh_ctrld};
+int (*builtin_func[]) (char **) = {&cd_builtin, &help_builtin,
+	&exit_builtin, &ctrld_biltin};
 
 /**
  * num_of_builtins - size
