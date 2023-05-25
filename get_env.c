@@ -11,7 +11,7 @@ void _getenv(char **env)
 
 	while (env[len])
 	{
-		write(STDOUT_FILENO, env[len], _strlen(env[len]));
+		write(STDOUT_FILENO, env[len], str_len(env[len]));
 		write(STDOUT_FILENO, "\n", 1);
 		len++;
 	}

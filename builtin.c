@@ -110,7 +110,7 @@ int _fork(char **arg, char **av, char **env, char *lineptr, int np, int c)
 		return (1);
 	for (i = 0; i < num_of_builtins(); i++)
 	{
-		if (_strcmp(arg[0], builtin_str[i]) == 0)
+		if (str_cmp(arg[0], builtin_str[i]) == 0)
 			return (builtin_func[i](arg));
 	}
 	child = fork();
