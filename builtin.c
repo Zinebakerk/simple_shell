@@ -1,13 +1,13 @@
 #include "shell.h"
 int cd_bultin(char **args);
 int help_bultin(char **args);
-int exit_bultin(char **args);
+int exit_shell(char **args);
 int ctrld_bultin(char **args);
 
 char *builtin_str[] = {"cd", "help", "exit", "^D"};
 
 int (*builtin_func[]) (char **) = {&cd_bultin, &help_bultin,
-	&exit_bultin, &ctrld_bultin};
+	&exit_shell, &ctrld_bultin};
 
 /**
  * num_of_builtins - the number of builtins
@@ -62,12 +62,12 @@ int help_bultin(char **args)
 }
 
 /**
- * exit_builtin - exit the shell
+ * exit_shell - exit the shell
  * @args: usage exit
  *
  * Return: 1
  */
-int exit_builtin(char **args)
+int exit_shell(char **args)
 {
 	(void)args;
 	free(args);
