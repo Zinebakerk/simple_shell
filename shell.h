@@ -27,17 +27,16 @@ int _fork(char **arg, char **av, char **env, char *lineptr, int np, int c);
 void _getenv(char **env);
 
 /* strin_tools.c */
-int _strcmp(char *s1, char *s2);
-size_t _strncmp(char *s1, char *s2, size_t n);
-int _strlen(char *s);
-char *_strcpy(char *dest, char *src);
-char *_strcat(char *dest, char *src);
-int _putchar(char c);
+int str_cmp(char *s1, char *s2);
+size_t str_ncmp(char *s1, char *s2, size_t n);
+int str_len(char *s);
+char *str_cpy(char *dest, char *src);
+char *str_cat(char *dest, char *src);
+/* tokenizer + path_values */
+char *get_pat(char **env);
+int  get_path_values(char *arg[], char **env);
+char **toke_nize(char *ptr);
 
-char *_get_path(char **env);
-int _values_path(char **arg, char **env);
-char **tokenize(char *lineptr);
-void _exit_command(char **args, char *lineptr, int _exit);
 
 
 #endif /* SHELL_H */
