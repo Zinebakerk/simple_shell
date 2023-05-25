@@ -37,9 +37,6 @@ char *str_cat(char *dest, char *src);
 char **toke_nize(char *ptr);
 
 /* paths_value.c */
-char *get_pat(char **env)
-int get_path_values(char *arg[], char **env)
-
-
-
+char *get_pat(char **env);
+int get_path_values(char *arg[], char **env);
 #endif

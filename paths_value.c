@@ -19,7 +19,7 @@ int get_path_values(char *arg[], char **env)
 
 	if (stat(*arg, &st) == 0)
 		return (-1);
-	path_route = get_path_values(env);
+	path_route = get_pat(env);
 	if (!path_route)
 		return (-1);
 	kento = strtok(path_route, ":"); 
