@@ -1,21 +1,18 @@
 #include "shell.h"
-
-
 /**
- * _getenv - prts env to standard output
+ * _getenv - print env to stdout
+ * @env: enviroment variables
  *
- * @env: enviroment
- *
+ * Return: void
  */
-
 void _getenv(char **env)
 {
-	size_t run = 0;
+	size_t len = 0;
 
-	while (env[run])
+	while (env[len])
 	{
-		write(STDOUT_FILENO, env[run], _strlen(env[run]));
+		write(STDOUT_FILENO, env[len], _strlen(env[len]));
 		write(STDOUT_FILENO, "\n", 1);
-		run++;
+		len++;
 	}
 }

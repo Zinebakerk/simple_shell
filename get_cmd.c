@@ -1,10 +1,11 @@
 #include "shell.h"
 /**
- * _getline_command -  GEts inputs
- * Return: The input.
+ * get_cmd -  read command from stdin
+ *
+ * Return: the command in a buffer
  */
 
-char *_getline_command(void)
+char *get_cmd(void)
 {
 	char *lineptr = NULL;
 	size_t charter_user = 0;
