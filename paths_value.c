@@ -23,19 +23,19 @@ int get_path_values(char *arg[], char **env)
 	if (!path_route)
 		return (-1);
 	kento = strtok(path_route, ":"); 
-	length = _strlen(*arg); 
+	length = str_len(*arg); 
 	while (kento)
 	{
-		value_rot = _strlen(kento);
+		value_rot = str_len(kento);
 		path_bs = malloc(sizeof(char) * (value_rot + length + 2));
 		if (!path_bs)
 		{
 			free(path_route);
 			return (-1);
 		}
-		path_bs = strcpy(path_bs, kento);
-		_strcat(path_bs, "/");
-		_strcat(path_bs, *arg);
+		path_bs = str_cpy(path_bs, kento);
+		str_cat(path_bs, "/");
+		str_cat(path_bs, *arg);
 
 		if (stat(path_bs, &st) == 0)
 		{
