@@ -22,14 +22,14 @@ int main(int ac, char **av, char **env)
 		if (line)
 		{
 			pathValue++;
-			commands = tokenize(line);
+			commands = toke_nize(line);
 			if (!commands)
 				free(line);
 			if (!_strcmp(commands[0], "env"))
 				_getenv(env);
 			else
 			{
-				is_path = _values_path(&commands[0], env);
+				is_path = get_path_values(&commands[0], env);
 				status = _fork(commands, av, env, line, pathValue, is_path);
 					if (status == 200)
 					{
