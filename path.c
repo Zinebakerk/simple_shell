@@ -13,7 +13,7 @@ char *get_pat(char **env)
         ssize_t counter = 5;
 	char *v_path = NULL;
 
-	for (ind = 0; str_ncmp(env[ind], "PATH=", 5); ind++)
+	for (ind = 0; strn_cmp(env[ind], "PATH=", 5); ind++)
 		;
 	if (env[ind] == NULL)
 		return (NULL);

@@ -38,8 +38,8 @@ int str_cmp(char *s1, char *s2)
 
 	while (s1[i] != 0 && s2[i] != 0 && s1[i] == s2[i])
 		i++;
-		val = s1[i] - s2[i];
-		return (val);
+	val = s1[i] - s2[i];
+	return (val);
 }
 
 /**
