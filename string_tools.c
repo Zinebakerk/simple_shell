@@ -21,7 +21,7 @@ char *str_cat(char *dest, char *src)
 
 	}
 	dest[i] = '\0';
-        return (dest);
+	return (dest);
 }
 
 /**
@@ -59,10 +59,10 @@ int str_len(char *s)
 }
 
 /**
- *str_ncmp - a function that compares two strings.
- *@s1: first string
- *@s2: second string 
- *@n: how many characters
+ * str_ncmp - a function that compares two strings.
+ * @s1: first string
+ * @s2: second string
+ * @n: how many characters
  * Return: the comparison (difference)
  */
 

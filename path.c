@@ -11,7 +11,7 @@ char *get_path(char **env)
 {
 	size_t ind = 0;
 	size_t s = 0;
-        ssize_t counter = 5;
+	ssize_t counter = 5;
 	char *v_path = NULL;
 
 	for (ind = 0; str_ncmp(env[ind], "PATH=", 5); ind++)
