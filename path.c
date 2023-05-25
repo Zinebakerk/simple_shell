@@ -3,17 +3,18 @@
 /**
  * get_path - function that gets the variable path
  * @env: extern environement variable
+ *
  * Return: path value
  */
 
-char *get_pat(char **env)
+char *get_path(char **env)
 {
 	size_t ind = 0;
-	size_t s = 0; 
+	size_t s = 0;
         ssize_t counter = 5;
 	char *v_path = NULL;
 
-	for (ind = 0; strn_cmp(env[ind], "PATH=", 5); ind++)
+	for (ind = 0; str_ncmp(env[ind], "PATH=", 5); ind++)
 		;
 	if (env[ind] == NULL)
 		return (NULL);

@@ -29,7 +29,7 @@ void _getenv(char **env);
 
 /* string_tools.c */
 int str_cmp(char *s1, char *s2);
-size_t strn_cmp(char *s1, char *s2, size_t n);
+size_t str_ncmp(char *s1, char *s2, size_t n);
 int str_len(char *s);
 char *str_cpy(char *dest, char *src);
 char *str_cat(char *dest, char *src);
@@ -38,7 +38,7 @@ char *str_cat(char *dest, char *src);
 char **toke_nize(char *ptr);
 
 /* paths_value.c */
-char *get_pat(char **env);
+char *get_path(char **env);
 int get_path_values(char *arg[], char **env);
 
 #endif

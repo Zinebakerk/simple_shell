@@ -19,11 +19,11 @@ int get_path_values(char *arg[], char **env)
 
 	if (stat(*arg, &st) == 0)
 		return (-1);
-	path_route = get_pat(env);
+	path_route = get_path(env);
 	if (!path_route)
 		return (-1);
-	kento = strtok(path_route, ":"); 
-	length = str_len(*arg); 
+	kento = strtok(path_route, ":");
+	length = str_len(*arg);
 	while (kento)
 	{
 		value_rot = str_len(kento);

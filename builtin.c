@@ -2,12 +2,11 @@
 int cd_bultin(char **args);
 int help_bultin(char **args);
 int exit_shell(char **args);
-int ctrld_bultin(char **args);
 
 char *builtin_str[] = {"cd", "help", "exit", "^D"};
 
 int (*builtin_func[]) (char **) = {&cd_bultin, &help_bultin,
-	&exit_shell, &ctrld_bultin};
+	&exit_shell, &ctrl_d_builtin};
 
 /**
  * num_of_builtins - the number of builtins
@@ -75,12 +74,12 @@ int exit_shell(char **args)
 }
 
 /**
- * ctrld_builtin - handle "^D" call
+ * ctrl_d_builtin - handle "^D" call
  * @args: "^D"
  *
  * Return: 0
  */
-int ctrld_builtin(char **args)
+int ctrl_d_builtin(char **args)
 {
 	(void)args;
 	free(args);
