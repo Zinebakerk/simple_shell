@@ -25,7 +25,7 @@ int main(int ac, char **av, char **env)
 			commands = toke_nize(line);
 			if (!commands)
 				free(line);
-			if (!_strcmp(commands[0], "env"))
+			if (!str_cmp(commands[0], "env"))
 				_getenv(env);
 			else
 			{

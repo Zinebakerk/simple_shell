@@ -16,7 +16,7 @@ char **toke_nize(char *ptr)
 	if (ptr == NULL)
 		return (NULL);
 
-	for (j = 0; ptr[j]; i++)
+	for (j = 0; ptr[j]; j++)
 	{
 		if (ptr[j] == ' ')
 			s++;
