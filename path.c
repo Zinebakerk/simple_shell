@@ -1,30 +1,33 @@
 #include "shell.h"
+
 /**
- * _get_path - get variable PATH.
- * @env: enviromente local
- * Return: value of PATH.
+ * get_path - function that gets the variable path
+ * @env: extern environement variable
+ * Return: path value
  */
 
-char *_get_path(char **env)
+char *get_pat(char **env)
 {
-	size_t index = 0, var = 0, count = 5;
-	char *path = NULL;
+	size_t ind = 0,
+	size_t s = 0, 
+	size_t counter = 5;
+	char *v_path = NULL;
 
-	for (index = 0; _strncmp(env[index], "PATH=", 5); index++)
+	for (ind = 0; str_ncmp(env[ind], "PATH=", 5); ind++)
 		;
-	if (env[index] == NULL)
+	if (env[ind] == NULL)
 		return (NULL);
 
-	for (count = 5; env[index][var]; var++, count++)
+	for (counter = 5; env[ind][var]; s++, counter++)
 		;
-	path = malloc(sizeof(char) * (count + 1));
+	v_path = malloc(sizeof(char) * (counter + 1));
 
-	if (path == NULL)
+	if (v_path == NULL)
 		return (NULL);
 
-	for (var = 5, count = 0; env[index][var]; var++, count++)
-		path[count] = env[index][var];
+	for (s = 5, counter = 0; env[ind][s]; s++, counter++)
+		v_path[counter] = env[ind][s];
 
-	path[count] = '\0';
-	return (path);
+	v_path[counter] = '\0';
+	return (v_path);
 }

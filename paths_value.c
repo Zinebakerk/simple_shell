@@ -1,46 +1,52 @@
 #include "shell.h"
-/**
- * _values_path - Separate the path in new strings.
- * @arg: Command input of user.
- * @env: Enviroment.
- * Return: Pointer to strings.
- */
-int _values_path(char **arg, char **env)
-{
-	char *token = NULL, *path_rela = NULL, *path_absol = NULL;
-	size_t value_path, len;
-	struct stat stat_lineptr;
 
-	if (stat(*arg, &stat_lineptr) == 0)
+/**
+ * get_path_values - function that do the separation by new strings.
+ * @arg: user input
+ * @env: external environement variable
+ * Return: pointer to char
+ */
+
+int get_path_values(char *arg[], char **env)
+{
+	/* variables declaration */
+	char *kento = NULL;
+	char *path_route = NULL;
+	char *path_bs = NULL;
+	size_t value_rot, length;
+	struct stat st;
+	/* conditions tested*/
+
+	if (stat(*arg, &st) == 0)
 		return (-1);
-	path_rela = _get_path(env);/** gets the content of "PATH="*/
-	if (!path_rela)
+	path_route = get_path_values(env);
+	if (!path_route)
 		return (-1);
-	token = strtok(path_rela, ":"); /**tokenizes the content of "PATH="*/
-	len = _strlen(*arg); /**gets length of arg*/
-	while (token)
+	kento = strtok(path_route, ":"); 
+	length = _strlen(*arg); 
+	while (kento)
 	{
-		value_path = _strlen(token);
-		path_absol = malloc(sizeof(char) * (value_path + len + 2));
-		if (!path_absol)
+		value_rot = _strlen(kento);
+		path_bs = malloc(sizeof(char) * (value_rot + length + 2));
+		if (!path_bs)
 		{
-			free(path_rela);
+			free(path_route);
 			return (-1);
 		}
-		path_absol = strcpy(path_absol, token);
-		_strcat(path_absol, "/");
-		_strcat(path_absol, *arg);
+		path_bs = strcpy(path_bs, kento);
+		_strcat(path_bs, "/");
+		_strcat(path_bs, *arg);
 
-		if (stat(path_absol, &stat_lineptr) == 0)
+		if (stat(path_bs, &st) == 0)
 		{
-			*arg = path_absol;
-			free(path_rela);
+			*arg = path_bs;
+			free(path_route);
 			return (0);
 		}
-		free(path_absol);
-		token = strtok(NULL, ":");
+		free(path_bs);
+		kento = strtok(NULL, ":");
 	}
-	token = '\0';
-	free(path_rela);
+	kento = '\0';
+	free(path_route);
 	return (-1);
 }
