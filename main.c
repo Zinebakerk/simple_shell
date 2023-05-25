@@ -31,10 +31,7 @@ int main(int ac, char **av, char **env)
 				is_path = get_path_values(&commands[0], env);
 				status = _fork(commands, av, env, line, pathValue, is_path);
 					if (status == 200)
-					{
-						free(line);
-						return (0);
-					}
+						free(line), return (0);
 				if (is_path == 0)
 					free(commands[0]);
 			}
