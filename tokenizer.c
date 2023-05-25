@@ -1,39 +1,38 @@
 #include "shell.h"
-
 /**
- * toke_nize -a function that tokenizes a stirng
- * @ptr: input of the user
- * Return: a pointer to an array of pointers
+ * tokenize - tokenizes a stirng
+ * @lineptr: what the user inputed
+ * Return: a ptr to arr of ptrs
  */
 
-char **toke_nize(char *ptr)
+char **tokenize(char *lineptr)
 {
-	char **cmd = NULL;
-	char *kento = NULL;
-	size_t j = 0;
-	int s = 0;
+	char **user_command = NULL;
+	char *token = NULL;
+	size_t i = 0;
+	int size = 0;
 
-	if (ptr == NULL)
+	if (lineptr == NULL)
 		return (NULL);
 
-	for (j = 0; ptr[j]; j++)
+	for (i = 0; lineptr[i]; i++)
 	{
-		if (ptr[j] == ' ')
-			s++;
+		if (lineptr[i] == ' ')
+			size++;
 	}
-	if ((s + 1) == str_len(ptr))
+	if ((size + 1) == _strlen(lineptr))
 		return (NULL);
-	cmd = malloc(sizeof(char *) * (s + 2));
-	if (cmd == NULL)
+	user_command = malloc(sizeof(char *) * (size + 2));
+	if (user_command == NULL)
 		return (NULL);
 
-	kento = strtok(ptr, " \n\t\r");
+	token = strtok(lineptr, " \n\t\r");
 
-	for (j = 0; kento != NULL; j++)
+	for (i = 0; token != NULL; i++)
 	{
-		cmd[j] = kento;
-		kento = strtok(NULL, " \n\t\r");
+		user_command[i] = token;
+		token = strtok(NULL, " \n\t\r");
 	}
-	cmd[j] = NULL;
-	return (cmd);
+	user_command[i] = NULL;
+	return (user_command);
 }

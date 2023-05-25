@@ -1,37 +1,39 @@
 #include "shell.h"
 /**
- * main - Entry point
- * @ac: number of argumnents
+ * main - Main arguments functions
+ * @ac: Count of argumnents
  * @av: Arguments
  * @env: Environment
- * Return: 0 Always (success).
+ * Return: _exit = 0.
  */
 int main(int ac, char **av, char **env)
 {
 	int pathValue = 0, status = 0, is_path = 0;
 	char *line = NULL, **commands = NULL;
-
 	(void)ac;
 	while (1)
 	{
 		errno = 0;
-		line = get_cmd();
+		line = _getline_command();
 		if (line == NULL && errno == 0)
 			return (0);
 		if (line)
 		{
 			pathValue++;
-			commands = toke_nize(line);
+			commands = tokenize(line);
 			if (!commands)
 				free(line);
-			if (!str_cmp(commands[0], "env"))
+			if (!_strcmp(commands[0], "env"))
 				_getenv(env);
 			else
 			{
-				is_path = get_path_values(&commands[0], env);
+				is_path = _values_path(&commands[0], env);
 				status = _fork(commands, av, env, line, pathValue, is_path);
 					if (status == 200)
-						free(line), return (0);
+					{
+						free(line);
+						return (0);
+					}
 				if (is_path == 0)
 					free(commands[0]);
 			}
