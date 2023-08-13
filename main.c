@@ -8,7 +8,7 @@
  */
 int main(int ac, char **av, char **env)
 {
-	int counter = 0, status = 0;
+	int counter = 0;
 	char *line = NULL, **commands = NULL;
 	(void)ac;
 
@@ -27,8 +27,7 @@ int main(int ac, char **av, char **env)
 			continue;
 		else
 		{
-			status = _fork(commands, av, env, counter);
+			_fork(commands, av, env, counter);
 		}
 	}
-	return (status);
 }
