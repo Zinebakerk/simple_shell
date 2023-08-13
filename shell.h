@@ -12,6 +12,6 @@
 char *_getline(void);
 char **get_command(char *line);
 int _fork(char **arg, char **av, char **env, int counter);
-
+char *_strdup(char *str);
 
 #endif

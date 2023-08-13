@@ -8,7 +8,7 @@ char **get_command(char *line)
 	
 	if (line == NULL)
 		return (NULL);
-	tmp = strdup(line);
+	tmp = _strdup(line);
 	token = strtok(tmp, delim);
 	if (!token)
 	{
@@ -30,11 +30,11 @@ char **get_command(char *line)
 		return (NULL);
 	}
 	free(tmp), tmp = NULL;
-	tmp = strdup(line);
+	tmp = _strdup(line);
 	token = strtok(tmp, delim);
 	while (token)
 	{
-		args[i++] = strdup(token);
+		args[i++] = _strdup(token);
 		token = strtok(NULL, delim);
 	}
 	args[i] = NULL;

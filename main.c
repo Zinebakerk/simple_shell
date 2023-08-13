@@ -28,10 +28,6 @@ int main(int ac, char **av, char **env)
 		else
 		{
 			status = _fork(commands, av, env, counter);
-			if (status == 200)
-			{
-				return (0);
-			}
 		}
 	}
 	return (status);
