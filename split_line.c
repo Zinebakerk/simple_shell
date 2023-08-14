@@ -1,6 +1,9 @@
 #include "shell.h"
-
-char **get_command(char *line)
+/**
+ * 
+ * 
+*/
+char **split_line(char *line)
 {
 	int i = 0, j = 0;
 	char *token = NULL, *tmp = NULL,  delim[] = " \t\n";
@@ -26,7 +29,6 @@ char **get_command(char *line)
 	{
 		free(line), line = NULL;
 		free(tmp), tmp = NULL;
-		free(token), token = NULL;
 		return (NULL);
 	}
 	free(tmp), tmp = NULL;
@@ -38,7 +40,6 @@ char **get_command(char *line)
 		token = strtok(NULL, delim);
 	}
 	args[i] = NULL;
-	free(token), token = NULL;
 	free(tmp), tmp = NULL;
 	free(line), line = NULL;
 	

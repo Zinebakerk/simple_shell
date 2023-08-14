@@ -9,7 +9,7 @@
 int main(int ac, char **av, char **env)
 {
 	int counter = 0;
-	char *line = NULL, **commands = NULL;
+	char *line = NULL, **command = NULL;
 	(void)ac;
 
 	while (1)
@@ -22,12 +22,12 @@ int main(int ac, char **av, char **env)
 			return (0);
 		}
 		counter++;
-		commands = get_command(line);
-		if (!commands)
+		command = split_line(line);
+		if (!command)
 			continue;
 		else
 		{
-			_fork(commands, av, env, counter);
+			_execute(command, av, env, counter);
 		}
 	}
 }
