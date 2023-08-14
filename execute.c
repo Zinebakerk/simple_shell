@@ -19,13 +19,7 @@ int _execute(char **arg, char **av, char **env, unsigned int idx)
 	child = fork();
 	if (child == 0)
 	{
-		if (execve(cmd, arg, env) == -1)
-		{
-			perror(av[0]);
-			free2Darray(arg);
-			free(cmd), cmd = NULL;
-			exit(errno);
-		}
+		execve(cmd, arg, env);	
 	}
 	else
 	{
