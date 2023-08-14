@@ -10,11 +10,11 @@ int _execute(char **arg, char **av, char **env, int counter)
 	int status, i = 0;
 	(void) counter;
 
-	if (arg[0] == NULL)
+	/*if (arg[0] == NULL)
 	{
 		free(arg), arg = NULL;
 		return (1);
-	}
+	}*/
 	cmd = handle_path(arg[0]);
 	child = fork();
 	if (child == 0)
