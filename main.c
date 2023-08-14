@@ -8,7 +8,7 @@
  */
 int main(int ac, char **av, char **env)
 {
-	int counter = 0;
+	unsigned int idx = 0;
 	char *line = NULL, **command = NULL;
 	(void)ac;
 
@@ -21,13 +21,15 @@ int main(int ac, char **av, char **env)
 				write(STDOUT_FILENO, "\n", 1);
 			return (0);
 		}
-		counter++;
+		idx++;
 		command = split_line(line);
 		if (!command)
 			continue;
 		else
 		{
-			_execute(command, av, env, counter);
+			if (_execute(command, av, env, idx) == -1)
+				continue;
+			
 		}
 	}
 }

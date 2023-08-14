@@ -60,13 +60,13 @@ char *_getpath(char *command)
 char *handle_path(char *command)
 {
 	struct stat st;
-	char *final_cmd = NULL;
+	char *final_cmd;
 
-	if (stat(command, &st) != 0) /* if cmd doesn't exist */
+	if (stat(command, &st) == 0) /* if command already exist */
+		final_cmd = _strdup(command); /* Use it as it is */
+	
+	else /* if cmd doesn't exist */
 		final_cmd = _getpath(command); /* try get the full path */
 	
-	if (final_cmd == NULL) /* if failed or command already exist */
-		final_cmd = _strdup(command); /* Use it as it is */
-
 	return (final_cmd);
 }

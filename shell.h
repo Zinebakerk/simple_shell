@@ -30,7 +30,7 @@ typedef struct list_dir
 
 char *_getline(void);
 char **split_line(char *line);
-int _execute(char **arg, char **av, char **env, int counter);
+int _execute(char **arg, char **av, char **env, unsigned int idx);
 char *_getenv(char *variable);
 
 
@@ -48,5 +48,10 @@ int _strcmp(char *s1, char *s2);
 char *_strdup(const char *str);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
+
+void free2Darray(char **array);
+void print_error(char *name, unsigned int idx, char *cmd);
+char* _itoa(unsigned int n);
+void reverse_string(char str[], int len);
 
 #endif
