@@ -13,19 +13,19 @@ void free2Darray(char **array)
 
 	free(array), array = NULL;
 }
-void print_error(char *name, unsigned int idx, char *cmd)
+void print_error(char *name, int idx, char *cmd)
 {
-	char *num, mssg[] = ": not found\n";
+	char *index, mssg[] = ": not found\n";
 
-	num = _itoa(idx);
+	index = _itoa(idx);
 
 	write(STDERR_FILENO, name, _strlen(name));
 	write(STDERR_FILENO, ": ", 2);
-	write(STDERR_FILENO, num, _strlen(num));
+	write(STDERR_FILENO, index, _strlen(index));
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, cmd, _strlen(cmd));
 	write(STDERR_FILENO, mssg, _strlen(mssg));
-	free(num);
+	free(index);
 }
 void reverse_string(char str[], int len)
 {
@@ -42,7 +42,7 @@ void reverse_string(char str[], int len)
 		end--;
 	}
 }
-char *_itoa(unsigned int n)
+char *_itoa(int n)
 {
 	char buffer[20];
 	int i = 0;

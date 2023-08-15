@@ -8,8 +8,7 @@
  */
 int main(int ac, char **av, char **env)
 {
-	int status = 0;
-	unsigned int idx = 0;
+	int status = 0, idx = 0;
 	char *line = NULL, **command = NULL;
 	(void)ac;
 
@@ -28,7 +27,7 @@ int main(int ac, char **av, char **env)
 			continue;
 		if (is_builtin(command[0]))
 		{
-			handle_builtin(command, av, env, status);
+			handle_builtin(command, av, env, status, idx);
 			continue;
 		}
 		else
@@ -36,7 +35,7 @@ int main(int ac, char **av, char **env)
 			status = _execute(command, av, env, idx);
 			if (status == 127)
 			{
-				if (!isatty(STDOUT_FILENO))
+				if (!isatty(STDIN_FILENO))
 					exit(status);
 				continue;
 			}

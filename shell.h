@@ -39,10 +39,10 @@ typedef struct list_dir
 typedef struct builtins
 {
 	char *builtin;
-	void (*f)(char **, char **, char **, int);
+	void (*f)(char **, char **, char **, int, int);
 } builtins;
 
-int _execute(char **arg, char **av, char **env, unsigned int idx);
+int _execute(char **command, char **av, char **env, int idx);
 char *_getenv(char *variable);
 char *_getline(void);
 char **split_line(char *line);
@@ -54,9 +54,9 @@ list_dir *add_node_end(list_dir **head, const char *str);
 void free_list_dir(list_dir *head);
 
 int is_builtin(char *command);
-void handle_builtin(char **command, char **av, char **env, int status);
-void exit_shell(char **command, char **av, char **env, int status);
-void print_env(char **command, char **av, char **env, int status);
+void handle_builtin(char **command, char **av, char **env, int st, int idx);
+void exit_shell(char **command, char **av, char **env, int status, int idx);
+void print_env(char **command, char **av, char **env, int status, int idx);
 
 
 
@@ -68,8 +68,10 @@ char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 
 void free2Darray(char **array);
-void print_error(char *name, unsigned int idx, char *cmd);
-char *_itoa(unsigned int n);
+void print_error(char *name, int idx, char *cmd);
+char *_itoa(int n);
 void reverse_string(char str[], int len);
+int is_positive_number(char *str);
+int _atoi(char *str);
 
 #endif
