@@ -28,7 +28,11 @@ int main(int ac, char **av, char **env)
 		else
 		{
 			if (_execute(command, av, env, idx) == -1)
+			{
+				if (isatty(STDOUT_FILENO) == 0)
+					exit(127);
 				continue;
+			}
 			
 		}
 	}

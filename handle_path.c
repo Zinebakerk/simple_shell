@@ -9,6 +9,8 @@ list_dir *build_dir_list(void)
 	char *path_env, *token;
 
 	path_env = _getenv("PATH");
+	if (!path_env)
+		return (NULL);
 	token = strtok(path_env, ":");
 	while (token)
 	{
