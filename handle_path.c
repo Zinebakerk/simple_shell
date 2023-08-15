@@ -62,13 +62,19 @@ char *_getpath(char *command)
 char *handle_path(char *command)
 {
 	struct stat st;
-	char *final_cmd;
+	char *final_cmd, *check;
 
+	check = _getenv("PATH");
+	if (!check) /* check if PATH env exist*/
+		return (NULL);
 	if (stat(command, &st) == 0) /* if command already exist */
-		final_cmd = _strdup(command); /* Use it as it is */
-	
+	{
+		final_cmd = _strdup(command); /* Use it as it is */	
+	}
 	else /* if cmd doesn't exist */
+	{
 		final_cmd = _getpath(command); /* try get the full path */
-	
+	}
+	free(check);
 	return (final_cmd);
 }
