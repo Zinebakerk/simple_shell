@@ -27,9 +27,19 @@ list_dir *build_dir_list(void)
 char *_getpath(char *command)
 {
 	list_dir *ld, *tmp;
-	char *full_cmd;
+	char *full_cmd, *check;
 	struct stat st;
-
+	
+	check = _getenv("PATH1");
+	if (stat(command, &st) == 0)
+	{
+		if (check)
+		{
+			free(check);
+			return (NULL);
+		}
+		return (_strdup(command));
+	}
 	ld = build_dir_list();
 	tmp = ld;
 	while (tmp)
@@ -54,27 +64,4 @@ char *_getpath(char *command)
 	free_list_dir(ld);
 	return (NULL);
 
-}
-/**
- * 
- * 
-*/
-char *handle_path(char *command)
-{
-	struct stat st;
-	char *final_cmd, *check;
-
-	check = _getenv("PATH");
-	if (!check) /* check if PATH env exist*/
-		return (NULL);
-	if (stat(command, &st) == 0) /* if command already exist */
-	{
-		final_cmd = _strdup(command); /* Use it as it is */	
-	}
-	else /* if cmd doesn't exist */
-	{
-		final_cmd = _getpath(command); /* try get the full path */
-	}
-	free(check);
-	return (final_cmd);
 }

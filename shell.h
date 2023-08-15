@@ -8,6 +8,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <errno.h>
+#include <fcntl.h>
 
 #define PROMPT "$ "
 
@@ -36,8 +37,6 @@ char *_getenv(char *variable);
 
 list_dir *build_dir_list(void);
 char *_getpath(char *command);
-char *handle_path(char *command);
-
 
 list_dir *add_node_end(list_dir **head, const char *str);
 void free_list_dir(list_dir *head);

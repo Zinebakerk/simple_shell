@@ -29,7 +29,7 @@ int main(int ac, char **av, char **env)
 		{
 			if (_execute(command, av, env, idx) == -1)
 			{
-				if (isatty(STDOUT_FILENO) == 0)
+				if (!isatty(STDOUT_FILENO))
 					exit(127);
 				continue;
 			}

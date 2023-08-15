@@ -9,7 +9,7 @@ int _execute(char **arg, char **av, char **env, unsigned int idx)
 	char *cmd;
 	int status;
 
-	cmd = handle_path(arg[0]);
+	cmd = _getpath(arg[0]);
 	if (!cmd)
 	{
 		print_error(av[0], idx, arg[0]);
@@ -19,7 +19,7 @@ int _execute(char **arg, char **av, char **env, unsigned int idx)
 	child = fork();
 	if (child == 0)
 	{
-		execve(cmd, arg, env);	
+		execve(cmd, arg, env);
 	}
 	else
 	{
