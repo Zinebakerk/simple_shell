@@ -25,4 +25,3 @@ int _execute(char **arg, char **av, char **env, unsigned int idx)
 	}
 	return (status);
 }
-

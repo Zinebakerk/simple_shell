@@ -28,7 +28,6 @@ typedef struct list_dir
 	struct list_dir *next;
 } list_dir;
 
-
 char *_getline(void);
 char **split_line(char *line);
 int _execute(char **arg, char **av, char **env, unsigned int idx);

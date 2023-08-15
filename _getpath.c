@@ -19,18 +19,18 @@ list_dir *build_dir_list(void)
 char *_getpath(char *command)
 {
 	list_dir *ld, *tmp;
-	char *full_cmd, *check;
+	char *full_cmd;
 	struct stat st;
+	int i;
 
-	check = _getenv("PATH1");
-	if (stat(command, &st) == 0)
+	for (i = 0; command[i]; i++)
 	{
-		if (check)
+		if (command[i] == '/')
 		{
-			free(check);
+			if (stat(command, &st) == 0)
+				return (_strdup(command));
 			return (NULL);
 		}
-		return (_strdup(command));
 	}
 	ld = build_dir_list();
 	tmp = ld;
@@ -55,5 +55,4 @@ char *_getpath(char *command)
 	}
 	free_list_dir(ld);
 	return (NULL);
-
 }
