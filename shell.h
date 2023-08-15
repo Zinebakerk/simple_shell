@@ -28,17 +28,37 @@ typedef struct list_dir
 	struct list_dir *next;
 } list_dir;
 
-char *_getline(void);
-char **split_line(char *line);
+/**
+ * struct builtins - bultin and its function
+ * @builtin: the builtin
+ * @f: function to handle the builtin
+ *
+ * Description: builtin and its function
+ * for simple shell
+ */
+typedef struct builtins
+{
+	char *builtin;
+	void (*f)(char **, char **, char **, int);
+} builtins;
+
 int _execute(char **arg, char **av, char **env, unsigned int idx);
 char *_getenv(char *variable);
-
+char *_getline(void);
+char **split_line(char *line);
 
 list_dir *build_dir_list(void);
 char *_getpath(char *command);
 
 list_dir *add_node_end(list_dir **head, const char *str);
 void free_list_dir(list_dir *head);
+
+int is_builtin(char *command);
+void handle_builtin(char **command, char **av, char **env, int status);
+void exit_shell(char **command, char **av, char **env, int status);
+void print_env(char **command, char **av, char **env, int status);
+
+
 
 
 int _strlen(char *s);

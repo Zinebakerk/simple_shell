@@ -8,6 +8,7 @@
  */
 int main(int ac, char **av, char **env)
 {
+	int status = 0;
 	unsigned int idx = 0;
 	char *line = NULL, **command = NULL;
 	(void)ac;
@@ -25,12 +26,18 @@ int main(int ac, char **av, char **env)
 		command = split_line(line);
 		if (!command)
 			continue;
+		if (is_builtin(command[0]))
+		{
+			handle_builtin(command, av, env, status);
+			continue;
+		}
 		else
 		{
-			if (_execute(command, av, env, idx) == -1)
+			status = _execute(command, av, env, idx);
+			if (status == 127)
 			{
 				if (!isatty(STDOUT_FILENO))
-					exit(127);
+					exit(status);
 				continue;
 			}
 		}

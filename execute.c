@@ -10,7 +10,7 @@ int _execute(char **arg, char **av, char **env, unsigned int idx)
 	{
 		print_error(av[0], idx, arg[0]);
 		free2Darray(arg);
-		return (-1);
+		return (127);
 	}
 	child = fork();
 	if (child == 0)
@@ -19,9 +19,9 @@ int _execute(char **arg, char **av, char **env, unsigned int idx)
 	}
 	else
 	{
-		wait(&status);
+		waitpid(child, &status, 0);
 		free2Darray(arg);
 		free(cmd), cmd = NULL;
 	}
-	return (status);
+	return (WEXITSTATUS(status));
 }
