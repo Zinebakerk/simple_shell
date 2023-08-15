@@ -1,8 +1,4 @@
 #include "shell.h"
-/**
- * 
- * 
-*/
 int _execute(char **arg, char **av, char **env, unsigned int idx)
 {
 	pid_t child;

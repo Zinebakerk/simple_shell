@@ -1,9 +1,4 @@
 #include "shell.h"
-/**
- * 
- * 
- * 
-*/
 void free2Darray(char **array)
 {
 	int i;
@@ -15,14 +10,9 @@ void free2Darray(char **array)
 		free(array[i]);
 		array[i] = NULL;
 	}
+
 	free(array), array = NULL;
-	
 }
-/**
- * 
- * 
- * 
-*/
 void print_error(char *name, unsigned int idx, char *cmd)
 {
 	char *num, mssg[] = ": not found\n";
@@ -39,27 +29,27 @@ void print_error(char *name, unsigned int idx, char *cmd)
 }
 void reverse_string(char str[], int len)
 {
-    int start = 0;
-    int end = len - 1;
+	int start = 0;
+	int end = len - 1;
 
-    while (start < end)
+	while (start < end)
 	{
 		char temp = str[start];
+
 		str[start] = str[end];
 		str[end] = temp;
 		start++;
 		end--;
 	}
 }
-
-char* _itoa(unsigned int n)
+char *_itoa(unsigned int n)
 {
 	char buffer[20];
-    int i = 0;
+	int i = 0;
 
-    if (n == 0)
+	if (n == 0)
 		buffer[i++] = '0';
-    else
+	else
 	{
 		while (n > 0)
 		{

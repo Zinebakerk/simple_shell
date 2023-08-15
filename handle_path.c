@@ -1,8 +1,4 @@
 #include "shell.h"
-/**
- * 
- * 
-*/
 list_dir *build_dir_list(void)
 {
 	list_dir *head = NULL;
@@ -20,16 +16,12 @@ list_dir *build_dir_list(void)
 	free(path_env);
 	return (head);
 }
-/**
- * 
- * 
-*/
 char *_getpath(char *command)
 {
 	list_dir *ld, *tmp;
 	char *full_cmd, *check;
 	struct stat st;
-	
+
 	check = _getenv("PATH1");
 	if (stat(command, &st) == 0)
 	{

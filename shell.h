@@ -50,7 +50,7 @@ char *_strcpy(char *dest, char *src);
 
 void free2Darray(char **array);
 void print_error(char *name, unsigned int idx, char *cmd);
-char* _itoa(unsigned int n);
+char *_itoa(unsigned int n);
 void reverse_string(char str[], int len);
 
 #endif

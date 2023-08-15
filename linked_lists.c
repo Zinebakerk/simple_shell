@@ -6,7 +6,7 @@
  * @str: the element to add.
  * Return: the address of the new element, or NULL if it faile.
  */
-list_dir *add_node_end(list_dir **head,const char *str)
+list_dir *add_node_end(list_dir **head, const char *str)
 {
 	list_dir *new_node, *tmp;
 

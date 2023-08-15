@@ -1,14 +1,10 @@
 #include "shell.h"
-/**
- * 
- * 
-*/
 char **split_line(char *line)
 {
 	int i = 0, j = 0;
 	char *token = NULL, *tmp = NULL,  delim[] = " \t\n";
 	char **args = NULL;
-	
+
 	if (line == NULL)
 		return (NULL);
 	tmp = _strdup(line);
@@ -42,6 +38,6 @@ char **split_line(char *line)
 	args[i] = NULL;
 	free(tmp), tmp = NULL;
 	free(line), line = NULL;
-	
+
 	return (args);
 }

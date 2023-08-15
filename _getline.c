@@ -3,7 +3,6 @@
  * _getline -  GEts inputs
  * Return: The input.
  */
-
 char *_getline(void)
 {
 	char *line = NULL;

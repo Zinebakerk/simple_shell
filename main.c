@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
- * main - Main arguments functions
+ * main - Simple Shell main function
  * @ac: Count of argumnents
  * @av: Arguments
  * @env: Environment
- * Return: _exit = 0.
+ * Return: 0 Always (success).
  */
 int main(int ac, char **av, char **env)
 {
@@ -33,7 +33,6 @@ int main(int ac, char **av, char **env)
 					exit(127);
 				continue;
 			}
-			
 		}
 	}
 }
